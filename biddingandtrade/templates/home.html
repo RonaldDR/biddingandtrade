@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<style>
+.jumbotron {
+    text-align: center;
+}
+{% endblock %}
+
+{% block jumbotron %}
+{% if request.user.is_authenticated %}
+<h2>Hello {{request.user}} !</h2>
+{%else%}
+<div class = "jumbotron">
+    <h1>Bid Trade Bid Trade</h1>
+    <p>An ecommerce website where you bid for the item that you really want in order to get that stupid shit.</p>
+</div>
+{% endif %}
+
+{% endblock %}
+{% block content%}
+<div class = "row">
+  {% for item in items %}
+  <div class="col-md-4">
+      <h3><a href = '{% url 'detail' item.pk %}'>{{item.item_name}}</h3></a>
+      <p>{{item.description}}</p>
+      <p>{{item.price}}</p>
+      <p>{{item.owner.username}}</p>
+      <p>{{item.when_created}}</p>
+   </div>
+  {% endfor %}
+</div>
+{% comment %}
+<div class = "row">
+   <div class="col-md-4">
+      <h2>Acad Shit</h2>
+      <p>stun ulti dagon unsa kahay sunod nakong buhaton adlsgfkjha r;kgjkl stun ulti dagon unsa kahay sunod nakong buhaton stun ulti dagon unsa kahay sunod nakong buhaton </p>
+      <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+   </div>
+   <div class="col-md-4">
+      <h2>Acad Shit</h2>
+      <p>stun ulti dagon unsa kahay sunod nakong buhaton adlsgfkjha r;kgjkl stun ulti dagon unsa kahay sunod nakong buhaton stun ulti dagon unsa kahay sunod nakong buhaton </p>
+      <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+   </div>
+</div>
+{% endcomment %}
+{% endblock %}

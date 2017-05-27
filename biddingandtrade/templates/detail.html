@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content%}
+	<div class="col-md-4">
+      <h3>{{ item.item_name }}</h3>
+      <p>{{ item.description }}</p>
+      <p>{{ item.price }}</p>
+      <p>owned by: {{ item.owner.username }}</p>
+      <p>{{ item.when_created }}</p>
+   </div>
+{% endblock %}

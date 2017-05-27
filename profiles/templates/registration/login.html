@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-md-4">
+    <form class="login" action="{% url 'sign_in' %}" method = "POST" >
+        {{ error }}
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="Username" value="{{ username }}" class="form-control" autocomplete="off" id="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="password" class="form-control" id="password">
+        </div>
+        
+        <button class="btn btn-primary">Sign In</button>
+    </form>
+</div>
+
+{% endblock %}
