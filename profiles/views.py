@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from profiles.forms import RegistrationForm,ItemForm
 from django.urls import reverse
 from .models import Item
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 def add_item(request):
 	if not request.user.is_authenticated():
@@ -54,3 +55,10 @@ def sign_up(request):
 def sign_out(request):
 	logout(request)
 	return redirect('/')
+
+class ItemCreate(CreateView):
+	model = Item
+	fields = ['owner','item_name', 'description', 'price']
+
+	def get_initial(self):
+		return {'owner': self.request.user }

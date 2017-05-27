@@ -22,7 +22,7 @@ from biddingandtrade.views import home,detail
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^registration/', include('profiles.urls')),
+    url(r'^', include('profiles.urls')),
     url(r'^$', home, name='home'),
     url(r'^(?P<item_id>\w+)/$',detail, name='detail')
 ]

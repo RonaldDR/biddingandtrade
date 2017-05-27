@@ -18,8 +18,8 @@
             <li {% if request.path == home %} class="active" {% endif %}><a href="{% url 'home' %}">Home</a></li>
             {% if request.user.is_authenticated %}
                
-                <li><a href="{% url 'add_item' %}">Add Item</a></li>
-                <li><a href="{% url 'sign_out' %}">Logout</a></li>
+                <li><a href="{% url 'profiles:item-add' %}">Add Item</a></li>
+                <li><a href="{% url 'profiles:sign_out' %}">Logout</a></li>
             {% else %}
                 <li {% if request.path == sign_in %} class="active" {% endif %}><a href="{% url 'sign_in' %}">Login</a></li>
                 <li {% if request.path == sign_up %} class="active" {% endif %}><a href="{% url 'sign_up' %}">Sign Up</a></li>
