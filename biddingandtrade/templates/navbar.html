@@ -13,23 +13,36 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li>
+          {% url 'home' as home %}
+          {% url 'item-add' as itemadd %}
+          {% url 'sign_in' as sign_in%}
+          {% url 'sign_up' as sign_up%}
+        <li {% if request.path == home %} class="active" {% endif %}>
           <a href="{% url 'home' %}">Home</a>
         </li>
         {% if request.user.is_authenticated %}
-        <li>
+        <li {% if request.path == itemadd %} class="active" {% endif %}>
           <a href="{% url 'item-add' %}">Add Item</a>
+        </li>
+        <li>
+          <a href="#"><span style="color:#222">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></a>
+        </li>
+        <li>
+          <a href="#"> hello {{request.user.username}} :)  </a>
         </li>
         <li>
           <a href="{% url 'sign_out' %}">Log out</a>
         </li>
 
         {%else%}
-
         <li>
+          <a href="#"><span style="color:#222">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></a>
+        </li>
+
+        <li {% if request.path == sign_in %} class="active" {% endif %}>
           <a href="{% url 'sign_in' %}">Sign in</a>
         </li>
-        <li>
+        <li {% if request.path == sign_up %} class="active" {% endif %}>
           <a href="{% url 'sign_up' %}">Sign up</a>
         </li>
 
