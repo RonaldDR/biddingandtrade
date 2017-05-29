@@ -3,22 +3,11 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from profiles.forms import RegistrationForm,ItemForm
+from profiles.forms import RegistrationForm
 from django.urls import reverse
 from .models import Item
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
-def add_item(request):
-	if not request.user.is_authenticated():
-		return redirect('/')
-	else:
-		form = ItemForm(request.POST)
-
-	context = {
-		'form':form
-	}
-	return render(request,'add_item.html', context)
-
+from django.core.urlresolvers import reverse_lazy
 
 def sign_in(request):
 	if request.user.is_authenticated:
@@ -35,7 +24,8 @@ def sign_in(request):
 		else:
 			context['error'] = 'Invalid username of password'
 			context['username'] = username
-	return render(request, 'registration/login.html', context = context)
+	
+	return render(request, 'profiles/registration/login.html', context = context)
 
 def sign_up(request):
 	if request.user.is_authenticated:
@@ -50,7 +40,7 @@ def sign_up(request):
 	else:
 		form = RegistrationForm()
 	context['form'] = form
-	return render(request, 'registration/signup.html',context = context)
+	return render(request, 'profiles/registration/signup.html',context = context)
 
 def sign_out(request):
 	logout(request)
@@ -58,7 +48,9 @@ def sign_out(request):
 
 class ItemCreate(CreateView):
 	model = Item
-	fields = ['owner','item_name', 'description', 'price']
+	fields = ['owner','item_name', 'description', 'price','picture']
 
 	def get_initial(self):
 		return {'owner': self.request.user }
+
+

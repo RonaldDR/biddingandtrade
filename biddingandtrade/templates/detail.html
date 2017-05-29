@@ -1,11 +1,25 @@
 {% extends 'base.html' %}
 
-{% block content%}
-	<div class="col-md-4">
-      <h3>{{ item.item_name }}</h3>
-      <p>{{ item.description }}</p>
-      <p>{{ item.price }}</p>
-      <p>owned by: {{ item.owner.username }}</p>
-      <p>{{ item.when_created }}</p>
-   </div>
+{% block contents %}
+<div class="col-md-3 col-sm-6 hero-feature">
+	<div class="thumbnail">
+		<img src="{{item.picture.url}}" alt="">
+		<div class="caption">
+			<h3> {{item.item_name}}</h3>
+			<p>Price: Php {{item.price}} </p>
+		</div>
+	</div>
+</div>
+{%comment%}
+	<div class ="row">
+		<div class = "col-md-4"><img src="{{item.picture.url}}" class = "img-responsive"></img></div>
+		<div class="col-md-4">
+	      <h3>{{ item.item_name }}</h3>
+	      <p>description: {{ item.description }}</p>
+	      <p>Price: Php {{ item.price }}</p>
+	      <p>Owner: {{ item.owner.username }}</p>
+	      <p>{{ item.when_created }}</p>
+	   </div>
+	</div>
+{% endcomment %}
 {% endblock %}
