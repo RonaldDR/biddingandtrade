@@ -17,5 +17,14 @@
 		<p><strong>PRICE:</strong> Php {{ item.price }}</p>
 		<p><strong>OWNER:</strong> {{ item.owner.username }}</p>
 	</div>
+	{% if request.user.is_authenticated and item.owner != request.user%}
+    <form action="{% url 'addbid' %}" method="POST" >
+        {% csrf_token %}
+        <input type = "number" name= "itempk" value = "{{item.pk}}" >
+        <input type = "text" name= "itemname" value = "{{item.item_name}}">
+        <input type = "number" name= "bid_cost" value = "0">
+        <button class="btn btn-primary">Bid</button>
+    </form>
+    {% endif %}
 </div>
 {% endblock %}

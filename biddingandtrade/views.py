@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from profiles.models import Item
+from profiles.models import Item,ProfileStatus
 
 def home(request):
 	context={

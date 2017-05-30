@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Item
+from .models import Item,ProfileStatus
 
 
 class RegistrationForm(UserCreationForm):
@@ -28,3 +28,16 @@ class RegistrationForm(UserCreationForm):
 			user.save()
 
 		return user
+
+class UserInfoForm(forms.ModelForm):
+	money = forms.IntegerField(required=False)
+
+	def save(self, commit=True):
+		instance = super(UserInfoForm, self).save(commit=commit)
+		if self.cleaned_data['money']:
+			instance.money = self.cleaned_data['money']
+			instance.save()
+	
+	class Meta:
+		model = User
+		fields = ['username','money']

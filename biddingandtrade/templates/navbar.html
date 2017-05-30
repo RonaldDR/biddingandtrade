@@ -17,6 +17,7 @@
           {% url 'item-add' as itemadd %}
           {% url 'sign_in' as sign_in%}
           {% url 'sign_up' as sign_up%}
+          {% url 'add_money' as add_money%}
         <li {% if request.path == home %} class="active" {% endif %}>
           <a href="{% url 'home' %}">Home</a>
         </li>
@@ -24,8 +25,17 @@
         <li {% if request.path == itemadd %} class="active" {% endif %}>
           <a href="{% url 'item-add' %}">Add Item</a>
         </li>
+
+        <li {% if request.path == add_money %} class="active" {% endif %}>
+          <a href="{% url 'add_money' %}">Add Money</a>
+        </li>
+
         <li>
-          <a href="#"><span style="color:#222">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></a>
+          <a href="#">{{ money.money}}</a>
+        </li>
+
+        <li>
+          <a href="#"><span style="color:#222">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span></a>
         </li>
         <li>
           <a href="#"> hello {{request.user.username}} :)  </a>

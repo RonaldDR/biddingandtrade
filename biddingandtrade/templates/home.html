@@ -13,6 +13,16 @@
 </style>
 {% endblock %}
 {% block header %}
+
+{% if request.user.is_authenticated and persons is not None%}
+	<div class="row">
+		<span class = "col-md-8"></span>
+		<div class="col-md-4">
+			<strong><p>Current Money: {{persons.money}}</p></strong>
+		</div>
+	</div>
+{% else %}
+{% endif %}
 <header class="jumbotron hero-spacer">
 	<h1>Bid Trade Bid Trade</h1>
 	<p>An ecommerce website where you bid for the item that you really want in order to get that stupid shit.</p>
